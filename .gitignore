@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # file
-.sa
+src/sa
 
 # Distribution / packaging
 .Python
