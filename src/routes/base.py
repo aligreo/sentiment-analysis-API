@@ -10,9 +10,6 @@ base_router = APIRouter(
 
 @base_router.get("/")
 async def read_root():
-    """
-    Root endpoint to check if the API is running.
-    """
     settings = get_settings()
     return {
         "message": "Welcome to the Sentiment Analysis API",
