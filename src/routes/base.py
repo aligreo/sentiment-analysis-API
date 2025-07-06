@@ -16,6 +16,4 @@ async def read_root():
         "app_name": settings.app_name,
         "app_version": settings.app_version,
         "app_description": settings.app_description,
-        "hugging_face_model": settings.hugging_face_model,
-        "hugging_face_task": settings.hugging_face_task,
     }

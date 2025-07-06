@@ -10,7 +10,7 @@ class ImdbDataset:
         if self.split:
             dataset = load_dataset(self.dataset_name, split=self.split)
             return dataset
-        else:
-            dataset = load_dataset(self.dataset_name)
-            return dataset
+        
+        dataset = load_dataset(self.dataset_name)
+        return dataset
 
