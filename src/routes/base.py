@@ -9,7 +9,7 @@ base_router = APIRouter(
 )   
 
 @base_router.get("/")
-async def read_root():
+async def main():
     settings = get_settings()
     return {
         "message": "Welcome to the Sentiment Analysis API",
