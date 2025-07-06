@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
 class APIStandardFormat(BaseModel):
-    text_id : str
-    text : str
+    prompt_id : str
+    prompt : str

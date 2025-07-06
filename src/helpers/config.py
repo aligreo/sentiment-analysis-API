@@ -1,6 +1,5 @@
 
 from pydantic_settings import BaseSettings
-from typing import Optional
 
 class Settings(BaseSettings):
     app_name: str
@@ -10,6 +9,8 @@ class Settings(BaseSettings):
     hugging_face_model:str
     hugging_face_task: str
     SYSTEM_PROMPT : str
+    OPEN_ROUTER_API_KEY: str
+    OPEN_ROUTER_MODEL: str
 
     class Config:
         env_file = ".env"

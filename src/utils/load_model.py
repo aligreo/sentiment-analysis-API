@@ -1,18 +1,18 @@
 
 from transformers import  AutoTokenizer, AutoModelForCausalLM
 from helpers import get_settings
+import torch
 
 class LoadModel: 
     def __init__(self):
-        pass
+        self.settings = get_settings()
 
     def load_tokenizer(self):
-        settings = get_settings()
         
         # Load the tokenizer
         tokenizer = AutoTokenizer.from_pretrained(
-            settings.hugging_face_model,
-            token=settings.hugging_face_api_key,
+            self.settings.hugging_face_model,
+            token=self.settings.hugging_face_api_key,
             trust_remote_code=True)
         return tokenizer
     
@@ -21,9 +21,9 @@ class LoadModel:
         
         # Load the model
         model = AutoModelForCausalLM.from_pretrained(
-            settings.hugging_face_model,
-            torch_dtype="auto",
-            token=settings.hugging_face_api_key,
+            self.settings.hugging_face_model,
+            torch_dtype=torch.float16,
+            token=self.settings.hugging_face_api_key,
             trust_remote_code=True
         )
         
