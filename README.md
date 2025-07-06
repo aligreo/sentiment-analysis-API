@@ -4,4 +4,6 @@ to get start using this project you need to clone and install the required packa
 
 ```bash
 
-pip install -r requirments.txt ```
+pip install -r requirments.txt 
+
+```
