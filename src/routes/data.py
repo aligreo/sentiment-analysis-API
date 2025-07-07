@@ -2,8 +2,6 @@
 from fastapi import APIRouter
 from helpers import get_settings
 from helpers import APIStandardFormat   
-from utils import LoadModel
-from datetime import datetime
 from transformers import pipeline
 from fastapi.responses import JSONResponse
 
@@ -32,7 +30,6 @@ async def process_data(data: APIStandardFormat):
     results = classifier(data.prompt)[0]
 
     return {
-        "timestamp": datetime.now().isoformat(),
         "output": results['label'],
         "score": results['score'],
         }
