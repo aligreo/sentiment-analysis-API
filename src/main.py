@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI
 from routes.data import data_router
 from routes.base import base_router
