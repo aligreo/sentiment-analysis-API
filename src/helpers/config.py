@@ -2,9 +2,9 @@
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    app_name: str
-    app_version: str
-    app_description: str
+    APP_NAME: str
+    APP_VERSION: str
+    APP_DESCRIPTION: str
     hugging_face_api_key: str 
     hugging_face_model:str
     hugging_face_task: str

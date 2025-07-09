@@ -1,5 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi import APIRouter
+from fastapi.templating import Jinja2Templates
 
 from helpers import get_settings
 
@@ -9,11 +10,16 @@ base_router = APIRouter(
 )   
 
 @base_router.get("/")
-async def main():
+async def main(request: Request):
+
     settings = get_settings()
-    return {
-        "message": "Welcome to the Sentiment Analysis API",
-        "app_name": settings.app_name,
-        "app_version": settings.app_version,
-        "app_description": settings.app_description,
-    }
+
+    template = Jinja2Templates(directory="templates")
+    return template.TemplateResponse(
+        request=request,
+        name = "index.html",
+        context={
+            "app_name": settings.APP_NAME,
+            "app_version": settings.APP_VERSION,
+            "app_descripton": settings.APP_DESCRIPTION
+        })
