@@ -3,11 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sentiment analysis api</title>
+    <title>Sentiment Analysis</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+        margin: 0;
+        padding: 0;
+        }
+        .container {
+           max-width: 400px;
+           margin: 60px auto;
+           background: #fff;
+           padding: 32px 24px;
+           border-radius: 10px;
+           box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+               }
+        h2 { text-align: center; color: #333; }
+        textarea { width: 100%; min-height: 80px; padding: 10px; border-radius: 6px; border: 1px solid #ccc; margin-bottom: 18px; font-size: 1em; }
+        button { width: 100%; padding: 10px; background: #4f8cff; color: #fff; border: none; border-radius: 6px; font-size: 1em; cursor: pointer; }
+        button:hover { background: #2563eb; }
+        .result { margin-top: 20px; text-align: center; font-size: 1.1em; }
+    </style>
 </head>
 <body>
-    <p>{{app_name}}</p>
-    <p>Version: {{app_version}}</p>
-    <p>Description: {{app_descripton}}</p>
+    <div class="container">
+        <h2>Sentiment Analysis</h2>
+        <form method="post" action="/">
+            <label for="user_text">Enter your text:</label>
+            <textarea id="user_text" name="user_text" required placeholder="Type your text here..."></textarea>
+            <button type="submit">Analyze Sentiment</button>
+        </form>
+        {% if sentiment and score %}
+        <div class="result">
+            <strong>Sentiment:</strong> {{ sentiment }}<br>
+            <strong>Score:</strong> {{ score }}
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>

@@ -6,10 +6,7 @@ from transformers import pipeline
 from fastapi.responses import JSONResponse
 
 
-data_router = APIRouter(
-    prefix="/api/v1/data",
-    tags=["api","data"],
-)
+data_router = APIRouter()
 
 @data_router.post("/get_sentiment")
 async def process_data(data: APIStandardFormat):

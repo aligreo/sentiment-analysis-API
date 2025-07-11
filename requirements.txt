@@ -5,3 +5,4 @@ torch
 evaluate
 pydantic-settings
 pydantic
+python-multipart
