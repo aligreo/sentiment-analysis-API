@@ -25,10 +25,6 @@ async def main(request: Request):
 async def get_user_data(request:Request, user_text :str = Form(...)):
     if isinstance(user_text, str) and len(user_text) > 0:
         sentiment = SentimentAnalysis().analyze(user_text)
-        if sentiment['label'] == 'LABEL_0':
-            sentiment['label'] = 'Negative'
-        else:
-            sentiment['label'] = 'Positive'
 
         return template.TemplateResponse(
             request = request,
@@ -36,7 +32,7 @@ async def get_user_data(request:Request, user_text :str = Form(...)):
             context = {
                 'request':request,
                 "sentiment": sentiment['label'],
-                "score": round(sentiment['score'], 2),
+                "score": round(sentiment['score'], 3),
             }
         )
         

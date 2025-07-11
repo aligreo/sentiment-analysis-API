@@ -4,8 +4,8 @@ from helpers import get_settings
 
 class SentimentAnalysis:
     def __init__(self):
-        self.model_name = get_settings().hugging_face_model
-        self.tokenizer_name = get_settings().hugging_face_model
+        self.model_name = get_settings().TRAINED_MODEL_PATH
+        self.tokenizer_name = get_settings().TRAINED_MODEL_PATH
         self.pipeline = pipeline(
             "sentiment-analysis",
             model=self.model_name,
