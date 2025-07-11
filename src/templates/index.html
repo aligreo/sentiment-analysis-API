@@ -6,40 +6,133 @@
     <title>Sentiment Analysis</title>
     <style>
         body {
-        font-family: Arial, sans-serif;
-        background: #f7f7f7;
-        margin: 0;
-        padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
         }
         .container {
-           max-width: 400px;
-           margin: 60px auto;
-           background: #fff;
-           padding: 32px 24px;
-           border-radius: 10px;
-           box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-               }
-        h2 { text-align: center; color: #333; }
-        textarea { width: 100%; min-height: 80px; padding: 10px; border-radius: 6px; border: 1px solid #ccc; margin-bottom: 18px; font-size: 1em; }
-        button { width: 100%; padding: 10px; background: #4f8cff; color: #fff; border: none; border-radius: 6px; font-size: 1em; cursor: pointer; }
-        button:hover { background: #2563eb; }
-        .result { margin-top: 20px; text-align: center; font-size: 1.1em; }
+            max-width: 420px;
+            margin: 60px auto;
+            background: #fff;
+            padding: 36px 28px 24px 28px;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(79,140,255,0.10);
+        }
+        h2 {
+            text-align: center;
+            color: #2563eb;
+            margin-bottom: 28px;
+            letter-spacing: 1px;
+        }
+        .label {
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 8px;
+            display: block;
+        }
+        textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1.5px solid #b6c6e3;
+            margin-bottom: 20px;
+            font-size: 1em;
+            background: #f4f7fb;
+            transition: border 0.2s;
+            resize: vertical;
+        }
+        textarea:focus {
+            border: 1.5px solid #2563eb;
+            outline: none;
+            background: #eaf1ff;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #4f8cff 0%, #2563eb 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.08em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(79,140,255,0.08);
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #2563eb 0%, #4f8cff 100%);
+        }
+        .result-card {
+            background: linear-gradient(90deg, #e0f2fe 0%, #f0f6ff 100%);
+            border-radius: 10px;
+            padding: 18px 14px;
+            margin-top: 28px;
+            box-shadow: 0 1px 8px rgba(79,140,255,0.07);
+            text-align: center;
+        }
+        .sentiment-label {
+            font-size: 1.15em;
+            color: #2563eb;
+            font-weight: 700;
+        }
+        .sentiment-value {
+            color: #0e7490;
+            font-weight: 700;
+        }
+        .score-label {
+            font-size: 1.08em;
+            color: #333;
+        }
+        .score-value {
+            color: #4f8cff;
+            font-weight: 600;
+        }
+        .error-card {
+            background: #ffeaea;
+            color: #c00;
+            border-radius: 8px;
+            padding: 13px 10px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .footer {
+            margin-top: 48px;
+            text-align: center;
+            color: #b6c6e3;
+            font-size: 0.98em;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Sentiment Analysis</h2>
-        <form method="post" action="/">
-            <label for="user_text">Enter your text:</label>
-            <textarea id="user_text" name="user_text" required placeholder="Type your text here..."></textarea>
-            <button type="submit">Analyze Sentiment</button>
-        </form>
-        {% if sentiment and score %}
-        <div class="result">
-            <strong>Sentiment:</strong> {{ sentiment }}<br>
-            <strong>Score:</strong> {{ score }}
+        <div class="container">
+            <h2>Sentiment Analysis</h2>
+            <form method="post" action="/">
+                <label for="user_text" class="label">Enter your text:</label>
+                <textarea id="user_text" name="user_text" required placeholder="Type your text here...">{{ user_text if user_text else '' }}</textarea>
+                <button type="submit">Analyze Sentiment</button>
+            </form>
+            {% if sentiment and score %}
+            <div class="result-card">
+                <span class="sentiment-label">
+                    Sentiment: 
+                    <span class="sentiment-value" style="color: {% if sentiment.lower() == 'negative' %}#e11d48{% else %}#059669{% endif %};">
+                        {{ sentiment }}
+                    </span>
+                </span><br>
+                <span class="score-label">Score: <span class="score-value">{{ score }}</span></span>
+            </div>
+            {% endif %}
+            {% if error %}
+            <div class="error-card">
+                {{ error }}
+            </div>
+            {% endif %}
+            <div class="footer">
+                <span>&copy; {{ app_name if app_name else 'Sentiment Analysis' }} | Version {{ app_version if app_version else '1.0' }}</span>
+            </div>
         </div>
-        {% endif %}
-    </div>
-</body>
+    </body>
 </html>
