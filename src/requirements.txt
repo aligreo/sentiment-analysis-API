@@ -6,3 +6,5 @@ evaluate
 pydantic-settings
 pydantic
 python-multipart
+sqlalchemy
+aiosqlite

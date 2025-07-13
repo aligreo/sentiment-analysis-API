@@ -5,9 +5,9 @@ from fastapi import Form
 from fastapi.responses import JSONResponse, RedirectResponse
 from helpers import get_settings
 from model_development import SentimentAnalysis
+from models import Texts, sessionLocal, init_db
 
 template = Jinja2Templates(directory="templates")
-
 base_router = APIRouter()   
 
 @base_router.get("/")
@@ -17,12 +17,7 @@ async def main(request: Request):
         request=request,
         name="index.html",
         context={
-            "request": request,
-            "sentiment": None,
-            "score": None,
-            "app_name": getattr(settings, "app_name", "Sentiment Analysis"),
-            "app_version": getattr(settings, "app_version", "1.0"),
-            "app_description": getattr(settings, "app_description", "Analyze the sentiment of your text!"),
+            "request": request
         }
     )
 
@@ -30,14 +25,23 @@ async def main(request: Request):
 async def get_user_data(request: Request, user_text: str = Form(...)):
     if isinstance(user_text, str) and len(user_text.strip()) > 0:
         sentiment = SentimentAnalysis().analyze(user_text)
+        label = sentiment.get('label', 'Unknown')
+        score = sentiment.get('score', 0.0)
+
+        db = sessionLocal()
+        observation = Texts(text=user_text, label=label, score=score)
+        db.add(observation)
+        db.commit()
+        db.refresh(observation)
+        db.close()
+
         return template.TemplateResponse(
             request=request,
             name="index.html",
             context={
                 "request": request,
-                "sentiment": sentiment.get('label', 'Unknown'),
-                "score": sentiment.get('score', 0.0),
-                "user_text": user_text,
+                "sentiment": label,
+                "score": score
             }
         )
     return template.TemplateResponse(
