@@ -8,10 +8,10 @@ class Settings(BaseSettings):
     hugging_face_api_key: str 
     hugging_face_model:str
     hugging_face_task: str
-    # SYSTEM_PROMPT : str
     OPEN_ROUTER_API_KEY: str
     OPEN_ROUTER_MODEL: str
     TRAINED_MODEL_PATH: str
+    DATA_BASE_URI : str
 
     class Config:
         env_file = ".env"

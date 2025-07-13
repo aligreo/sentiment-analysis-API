@@ -2,8 +2,9 @@
 from sqlalchemy import create_engine, Column, Integer, String, LargeBinary, DECIMAL
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from helpers import get_settings
 
-sqlite_database_path = "sqlite:///./db/texts.db"
+sqlite_database_path = get_settings().DATA_BASE_URI
 
 engine = create_engine(url=sqlite_database_path)
 sessionLocal = sessionmaker(engine)
