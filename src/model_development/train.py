@@ -10,10 +10,10 @@ import evaluate
 settings = get_settings()
 
 
-model = AutoModelForSequenceClassification.from_pretrained(settings.hugging_face_model,
+model = AutoModelForSequenceClassification.from_pretrained(settings.HUGGING_FACE_MODEL,
                                                            torch_dtype=torch.float16,
                                                            trust_remote_code=True)
-tokenizer = AutoTokenizer.from_pretrained(settings.hugging_face_model,
+tokenizer = AutoTokenizer.from_pretrained(settings.HUGGING_FACE_MODEL,
                                           trust_remote_code=True)
 
 

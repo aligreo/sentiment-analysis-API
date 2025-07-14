@@ -7,7 +7,7 @@ class SentimentAnalysis:
         self.model_name = get_settings().TRAINED_MODEL_PATH
         self.tokenizer_name = get_settings().TRAINED_MODEL_PATH
         self.pipeline = pipeline(
-            "sentiment-analysis",
+            get_settings().HUGGING_FACE_TASK,
             model=self.model_name,
             tokenizer=self.tokenizer_name
         )

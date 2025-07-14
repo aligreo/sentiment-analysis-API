@@ -5,12 +5,10 @@ class Settings(BaseSettings):
     APP_NAME: str
     APP_VERSION: str
     APP_DESCRIPTION: str
-    hugging_face_api_key: str 
-    hugging_face_model:str
-    hugging_face_task: str
-    OPEN_ROUTER_API_KEY: str
-    OPEN_ROUTER_MODEL: str
+    HUGGING_FACE_API_KEY: str 
+    HUGGING_FACE_MODEL:str
     TRAINED_MODEL_PATH: str
+    HUGGING_FACE_TASK : str
     DATA_BASE_URI : str
 
     class Config:
