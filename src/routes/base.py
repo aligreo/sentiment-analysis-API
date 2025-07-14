@@ -10,6 +10,7 @@ from models import Texts, sessionLocal, init_db
 template = Jinja2Templates(directory="templates")
 base_router = APIRouter()   
 
+@base_router.get("/home")
 @base_router.get("/")
 async def main(request: Request):
     settings = get_settings()
