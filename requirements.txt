@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+transformers
+torch
+evaluate
+pydantic-settings
+pydantic
+python-multipart
+sqlalchemy
+aiosqlite
