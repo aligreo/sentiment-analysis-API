@@ -7,7 +7,6 @@ class Settings(BaseSettings):
     APP_DESCRIPTION: str
     HUGGING_FACE_API_KEY: str 
     HUGGING_FACE_MODEL:str
-    TRAINED_MODEL_PATH: str
     HUGGING_FACE_TASK : str
     DATA_BASE_URI : str
 

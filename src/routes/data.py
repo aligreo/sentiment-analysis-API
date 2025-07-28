@@ -14,8 +14,8 @@ async def process_data(data: APIStandardFormat):
 
     classifier = pipeline(
         "sentiment-analysis",
-        model=settings.TRAINED_MODEL_PATH,
-        tokenizer=settings.TRAINED_MODEL_PATH
+        model=settings.HUGGING_FACE_MODEL,
+        tokenizer=settings.HUGGING_FACE_MODEL
         )
     
     if not data.prompt or len(data.prompt.strip()) == 0:

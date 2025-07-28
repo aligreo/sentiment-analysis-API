@@ -17,7 +17,9 @@ async def main(request: Request):
         request=request,
         name="index.html",
         context={
-            "request": request
+            "request": request,
+            "app_name": settings.APP_NAME,
+            "app_version": settings.APP_VERSION,
         }
     )
 
