@@ -57,7 +57,3 @@ async def get_user_data(request: Request, user_text: str = Form(...)):
         },
         status_code=400
     )
-
-
-
-

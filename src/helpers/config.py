@@ -9,6 +9,8 @@ class Settings(BaseSettings):
     HUGGING_FACE_MODEL:str
     HUGGING_FACE_TASK : str
     DATA_BASE_URI : str
+    OPENROUTER_API_KEY: str
+    OPENROUTER_MODEL: str
 
     class Config:
         env_file = ".env"

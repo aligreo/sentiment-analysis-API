@@ -8,6 +8,7 @@ __pycache__/
 
 sa
 db
+.env
 
 # file
 src/sa
