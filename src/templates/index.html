@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 420px;
+            margin: 60px auto;
+            background: #fff;
+            padding: 36px 28px 24px 28px;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(79,140,255,0.10);
+        }
+        h2 {
+            text-align: center;
+            color: #2563eb;
+            margin-bottom: 28px;
+            letter-spacing: 1px;
+        }
+        .label {
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 8px;
+            display: block;
+        }
+        textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1.5px solid #b6c6e3;
+            margin-bottom: 20px;
+            font-size: 1em;
+            background: #f4f7fb;
+            transition: border 0.2s;
+            resize: vertical;
+        }
+        textarea:focus {
+            border: 1.5px solid #2563eb;
+            outline: none;
+            background: #eaf1ff;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #4f8cff 0%, #2563eb 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.08em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(79,140,255,0.08);
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #2563eb 0%, #4f8cff 100%);
+        }
+        .result-card {
+            background: linear-gradient(90deg, #e0f2fe 0%, #f0f6ff 100%);
+            border-radius: 10px;
+            padding: 18px 14px;
+            margin-top: 28px;
+            box-shadow: 0 1px 8px rgba(79,140,255,0.07);
+            text-align: center;
+        }
+        .result-card p {
+            margin: 10px 0;
+            font-size: 1.08em;
+        }
+        .footer {
+            margin-top: 48px;
+            text-align: center;
+            color: #b6c6e3;
+            font-size: 0.98em;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+
+</head>
+<body>
+    <div class="container">
+        <h2>Sentiment Analysis</h2>
+        <form method="post" action="/">
+            <label for="user_text" class="label">Enter your text:</label>
+            <textarea id="user_text" name="user_text" required placeholder="Type your text here...">{{ user_text if user_text else '' }}</textarea>
+            <button type="submit">Analyze Sentiment</button>
+        </form>
+        {% if sentiment and score %}
+        <div class="result-card">
+            <p><strong>Sentiment:</strong> {{ sentiment }}</p>
+            <p><strong>Score:</strong> {{ score }}</p>      
+        </div>
+        {% endif %}
