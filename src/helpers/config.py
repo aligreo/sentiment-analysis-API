@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     hf_api_key : str
     database_url : str
     table_name : str
+    openrouter_api_key : str
+    openrouter_model : str
 
     class Config:
         env_file = ".env"

@@ -7,6 +7,7 @@ from fastapi.responses import JSONResponse, RedirectResponse
 from LLM.sentiment import SentimentAnalysis
 from models import Texts, sessionLocal
 from helpers.config import settings
+from LLM.openrouter import generate_response
 
 template = Jinja2Templates(directory="templates")
 app = FastAPI()   
@@ -70,3 +71,23 @@ async def get_history(request: Request):
             "description": settings.app_description,
         }
     )
+
+
+@app.get("/generate")
+def generate(request: Request):
+    return template.TemplateResponse(
+        request=request,
+        name  ="generate.html",
+        context={"request": request}
+    )
+@app.post("/generate")
+def generate(request: Request, prompt: str=Form(...)):
+    response = generate_response(prompt)
+    return template.TemplateResponse(
+        request=request,
+        name  ="generate.html",
+        context={
+            "response": response
+        })
+
+
