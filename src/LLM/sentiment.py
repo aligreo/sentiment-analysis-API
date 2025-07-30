@@ -1,16 +1,14 @@
 
 from transformers import pipeline
 from dataclasses import dataclass
+from helpers.config import settings
 
 @dataclass
 class SentimentAnalysis:
-    task: str = "sentiment-analysis"
-    model_name: str = "distilbert/distilbert-base-uncased-finetuned-sst-2-english"
-    tokenizer_name : str = "distilbert/distilbert-base-uncased-finetuned-sst-2-english"
     pipeline = pipeline(
-        task=task,
-        model=model_name,
-        tokenizer=tokenizer_name
+        task=settings.task,
+        model=settings.model_name,
+        tokenizer=settings.model_name
     )
 
     def analyze(self, text: str):

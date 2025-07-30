@@ -6,7 +6,7 @@ from fastapi.responses import JSONResponse, RedirectResponse
 # from helpers import get_settings
 from LLM.sentiment import SentimentAnalysis
 from models import Texts, sessionLocal
-
+from helpers.config import settings
 
 template = Jinja2Templates(directory="templates")
 app = FastAPI()   
@@ -57,4 +57,16 @@ async def get_user_data(request: Request, user_text: str = Form(...)):
             "error": "Please provide a valid text input.",
         },
         status_code=400
+    )
+
+@app.get("/history")
+async def get_history(request: Request):
+    return template.TemplateResponse(
+        request=request,
+        name="history.html",
+        context={
+            "app_name": settings.app_name,
+            "app_version": settings.app_version,
+            "description": settings.app_description,
+        }
     )
