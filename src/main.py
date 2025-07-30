@@ -4,7 +4,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi import Form
 from fastapi.responses import JSONResponse, RedirectResponse
 # from helpers import get_settings
-from model_development.sentiment import SentimentAnalysis
+from LLM.sentiment import SentimentAnalysis
 from models import Texts, sessionLocal
 
 
