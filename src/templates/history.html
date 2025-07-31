@@ -1,13 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>{{app_name}}</p>
-    <p>{{app_version}}</p>
-    <p>{{description}}</p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="history-container">
+        <h2>History</h2>
+        <div class="history-info">
+            <p><strong>App Name:</strong> {{ app_name }}</p>
+            <p><strong>Version:</strong> {{ app_version }}</p>
+            <p><strong>Description:</strong> {{ description }}</p>
+        </div>
+        {% if history %}
+        <div class="history-list">
+            <h3>Previous Generations</h3>
+            <ul>
+                {% for item in history %}
+                <li>
+                    <div class="history-item">
+                        <span class="history-prompt"><strong>Prompt:</strong> {{ item.prompt }}</span><br>
+                        <span class="history-response"><strong>Response:</strong> {{ item.response }}</span>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    <style>
+        .history-container {
+            max-width: 620px;
+            margin: 60px auto;
+            background: #fff;
+            padding: 36px 28px 24px 28px;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(79,140,255,0.10);
+        }
+        .history-container h2 {
+            text-align: center;
+            color: #2563eb;
+            margin-bottom: 28px;
+            letter-spacing: 1px;
+        }
+        .history-info p {
+            margin: 8px 0;
+            font-size: 1.08em;
+        }
+        .history-list {
+            margin-top: 32px;
+        }
+        .history-list h3 {
+            color: #2563eb;
+            margin-bottom: 16px;
+        }
+        .history-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .history-item {
+            background: #f4f7fb;
+            border-radius: 8px;
+            padding: 14px 12px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 6px rgba(79,140,255,0.07);
+        }
+        .history-prompt {
+            color: #333;
+        }
+        .history-response {
+            color: #059669;
+        }
+    </style>
+{% endblock %}

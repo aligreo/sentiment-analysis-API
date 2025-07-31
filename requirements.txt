@@ -9,3 +9,5 @@ python-multipart
 sqlalchemy
 aiosqlite
 openai
+markdown
+jinja2

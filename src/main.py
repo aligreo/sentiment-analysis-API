@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from fastapi.templating import Jinja2Templates
 from fastapi import Form
 from fastapi.responses import JSONResponse, RedirectResponse
+from markdown import markdown
 # from helpers import get_settings
 from LLM.sentiment import SentimentAnalysis
 from models import Texts, sessionLocal
@@ -83,11 +84,12 @@ def generate(request: Request):
 @app.post("/generate")
 def generate(request: Request, prompt: str=Form(...)):
     response = generate_response(prompt)
+    html_response = markdown(response) if response else ""
     return template.TemplateResponse(
         request=request,
         name  ="generate.html",
         context={
-            "response": response
+            "response": html_response
         })
 
 

@@ -1,8 +1,17 @@
+{% extends 'base.html'%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-    <style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+
+</head>
+<body>
+    {% block content %}
+        <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: #f7f7f7;
@@ -81,12 +90,6 @@
             font-size: 0.98em;
         }
     </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentiment Analysis</title>
-
-</head>
-<body>
     <div class="container">
         <h2>Sentiment Analysis</h2>
         <form method="post" action="/">
@@ -100,3 +103,4 @@
             <p><strong>Score:</strong> {{ score }}</p>      
         </div>
         {% endif %}
+    {% endblock %}
