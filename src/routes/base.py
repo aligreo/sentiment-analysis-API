@@ -18,13 +18,8 @@ async def main(request: Request):
         name="index.html",
         context={
             "request": request,
-<<<<<<< HEAD
             "app_name": settings.app_name,
             "app_version": settings.app_version,
-=======
-            "app_name": settings.APP_NAME,
-            "app_version": settings.APP_VERSION,
->>>>>>> 3815eccddffd122448034a66c6df5ec620cdbab9
         }
     )
 
