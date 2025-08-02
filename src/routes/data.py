@@ -32,15 +32,3 @@ async def process_data(data: APIStandardFormat):
         "output": results['label'],
         "score": results['score'],
         }
-
-@data_router.post("/sentiment/openrouter")
-async def openrouter_sentiment(data: SentimentResponse):
-    if not data.user_text or len(data.user_text.strip()) == 0:
-        return JSONResponse(
-            status_code=400,
-            content={"error": "User text cannot be empty."}
-        )
-    sentiment = get_sentiment_gemma_14b(data.user_text)
-    return {
-        "label": sentiment
-        }
