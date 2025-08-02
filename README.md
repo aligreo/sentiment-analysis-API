@@ -11,4 +11,12 @@ to get start using this project and adjusting it you need to clone the project a
 
 ```
 
+to get start loading any model from huggingface you only need to import the model and it's tokenizer
 
+```bash
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels = num_labels)
+
+```
