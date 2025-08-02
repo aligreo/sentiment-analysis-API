@@ -9,7 +9,7 @@ sessionLocal = sessionmaker(engine)
 Base = declarative_base()
 
 class Texts(Base):
-    __tablename__ = 'Texts'
+    __tablename__ = get_settings().table_name
     id = Column(Integer, primary_key=True, nullable=False)
     text = Column(String, nullable=False)
     label = Column(String, nullable=False)
