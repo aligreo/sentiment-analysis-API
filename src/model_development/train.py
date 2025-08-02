@@ -1,7 +1,7 @@
 
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from transformers import Trainer, TrainingArguments
-from data_loader import ImdbDataset
+from data_loader import Dataset
 from helpers import get_settings
 import numpy as np
 import torch
@@ -17,7 +17,7 @@ tokenizer = AutoTokenizer.from_pretrained(settings.HUGGING_FACE_MODEL,
                                           trust_remote_code=True)
 
 
-dataset = ImdbDataset(dataset_name='imdb', split='train').load_data()
+dataset = Dataset(dataset_name='imdb', split='train').load_data()
 
 def process_dataset(row):
     return tokenizer(row['text'], padding=True, truncation=True)
